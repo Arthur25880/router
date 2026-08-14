@@ -2,18 +2,27 @@
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-// PREOCUPANDO COM A PASTA EM CADA ROTA
+// SEM PREOCUPAR COM A PASTA NA ROTA POIS TEM A $BASE
+$base = '/router';
+
+if (str_starts_with($uri, $base)) {
+    $uri = substr($uri, strlen($base));
+}
+
+if ($uri === '') {
+    $uri = '/';
+}
+
 switch ($uri) {
-    case '/router':
-    case '/router/':
+    case '/':
         require 'pages/home.php';
         break;
 
-    case '/router/sobre':
+    case '/sobre':
         require 'pages/sobre.php';
         break;
 
-    case '/router/contato':
+    case '/contato':
         require 'pages/contato.php';
         break;
 
