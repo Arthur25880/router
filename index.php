@@ -25,7 +25,9 @@ switch ($uri) {
     case '/contato':
         require 'pages/contato.php';
         break;
-
+    case '/pedido':
+        require 'pages/pedido.php';
+        break;
     default:
         http_response_code(404);
         echo "404 - Página não encontrada";
