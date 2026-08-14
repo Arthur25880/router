@@ -2,14 +2,14 @@
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-// SEM PREOCUPAR COM A PASTA NA ROTA POIS TEM A $BASE
-$base = '/router';
+// DESCOBRINDO A PASTA DO PROJETO
+$base = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
 
-if (str_starts_with($uri, $base)) {
+if ($base !== '' && str_starts_with($uri, $base)) {
     $uri = substr($uri, strlen($base));
 }
 
-if ($uri === '') {
+if ($uri === '' || $uri === false) {
     $uri = '/';
 }
 
