@@ -1,19 +1,20 @@
 <?php
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$par = parse_url($_SERVER['REQUEST_URI'], PHP_URL_QUERY);
 
 // DESCOBRINDO A PASTA DO PROJETO
 $base = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
 
-if ($base !== '' && str_starts_with($uri, $base)) {
-    $uri = substr($uri, strlen($base));
+if ($base !== '' && str_starts_with($par, $base)) {
+    $par = substr($par, strlen($base));
 }
 
-if ($uri === '' || $uri === false) {
-    $uri = '/';
+if ($par === '' || $par === false) {
+    $par = '/';
 }
 
-switch ($uri) {
+switch ($par) {
     case '/':
         require 'pages/home.php';
         break;
